@@ -2,6 +2,10 @@
 
 A full-stack MERN application for managing scholarships with role-based access for students and admins.
 
+## 🌐 Live Demo
+
+🔗 https://osms-scholarship-system.vercel.app/
+
 ## 🚀 Features
 - JWT Authentication (Student/Admin)
 - OTP Login System
