@@ -95,7 +95,7 @@ export default function StudentDashboard() {
                     {s.type === 'external' ? <LinkIcon className="h-3.5 w-3.5 text-primary-500" /> : <BookOpen className="h-3.5 w-3.5 text-primary-500" />}
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium text-gray-900 dark:text-white truncate group-hover:text-primary-600 transition-colors">{s.title}</p>
+                    <p className="text-sm font-medium text-gray-900 dark:text-white truncategroup-hover:text-primary-600 dark:group-hover:text-primary-400  transition-colors">{s.title}</p>
                     <p className="text-xs text-gray-400">₹{s.amount?.toLocaleString()} • Due {new Date(s.deadline).toLocaleDateString()}</p>
                   </div>
                   <Badge status={s.type} />
