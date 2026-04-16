@@ -2,20 +2,19 @@ const Admin = require('../models/Admin.model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-// Helper: generate token
+// generate token
 const generateToken = (id, userType) =>
   jwt.sign({ id, userType }, process.env.JWT_SECRET, { expiresIn: '7d' });
 
-// @route  POST /api/auth/admin/register
+
 exports.registerAdmin = async (req, res) => {
   try {
     const { name, email, phone, institutionName, password } = req.body;
 
-    // Check if admin already exists
+  
     const exists = await Admin.findOne({ email });
     if (exists) return res.status(400).json({ message: 'Admin already registered' });
 
-    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const admin = await Admin.create({
@@ -41,7 +40,6 @@ exports.registerAdmin = async (req, res) => {
   }
 };
 
-// @route  POST /api/auth/admin/login
 exports.loginAdmin = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -67,7 +65,7 @@ exports.loginAdmin = async (req, res) => {
   }
 };
 
-// @route  GET /api/auth/admin/me  (protected)
+
 exports.getAdminProfile = async (req, res) => {
   try {
     const admin = await Admin.findById(req.user.id).select('-password');

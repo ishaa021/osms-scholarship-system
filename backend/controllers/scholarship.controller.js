@@ -1,10 +1,5 @@
 const Scholarship = require('../models/Scholarship.model');
 
-// ─────────────────────────────────────────────
-// @desc    Admin creates a scholarship
-// @route   POST /api/scholarships
-// @access  Admin only
-// ─────────────────────────────────────────────
 exports.createScholarship = async (req, res) => {
   try {
     const {
@@ -49,11 +44,7 @@ exports.createScholarship = async (req, res) => {
   }
 };
 
-// ─────────────────────────────────────────────
-// @desc    Get all scholarships (institution-filtered for students)
-// @route   GET /api/scholarships
-// @access  Admin + Student (protected)
-// ─────────────────────────────────────────────
+
 exports.getAllScholarships = async (req, res) => {
   try {
     // Build base filter by institution
@@ -87,11 +78,6 @@ exports.getAllScholarships = async (req, res) => {
   }
 };
 
-// ─────────────────────────────────────────────
-// @desc    Get single scholarship by ID
-// @route   GET /api/scholarships/:id
-// @access  Admin + Student (protected)
-// ─────────────────────────────────────────────
 exports.getScholarshipById = async (req, res) => {
   try {
     const scholarship = await Scholarship.findById(req.params.id).populate(
@@ -114,11 +100,7 @@ exports.getScholarshipById = async (req, res) => {
   }
 };
 
-// ─────────────────────────────────────────────
-// @desc    Admin updates a scholarship
-// @route   PATCH /api/scholarships/:id
-// @access  Admin only
-// ─────────────────────────────────────────────
+
 exports.updateScholarship = async (req, res) => {
   try {
     const scholarship = await Scholarship.findById(req.params.id);
@@ -153,11 +135,6 @@ exports.updateScholarship = async (req, res) => {
   }
 };
 
-// ─────────────────────────────────────────────
-// @desc    Admin deletes (soft delete) a scholarship
-// @route   DELETE /api/scholarships/:id
-// @access  Admin only
-// ─────────────────────────────────────────────
 exports.deleteScholarship = async (req, res) => {
   try {
     const scholarship = await Scholarship.findById(req.params.id);
@@ -180,11 +157,7 @@ exports.deleteScholarship = async (req, res) => {
   }
 };
 
-// ─────────────────────────────────────────────
-// @desc    Admin gets stats for their institution
-// @route   GET /api/scholarships/stats
-// @access  Admin only
-// ─────────────────────────────────────────────
+
 exports.getScholarshipStats = async (req, res) => {
   try {
     const institution = req.user.institutionName;

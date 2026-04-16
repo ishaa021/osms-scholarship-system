@@ -24,18 +24,18 @@ api.interceptors.response.use(
   }
 );
 
-// ── Auth (existing) ───────────────────────────────────────
+// ── Auth  ───────────────────────────────────────
 export const adminRegister   = (data) => api.post('/auth/admin/register', data);
 export const adminLogin      = (data) => api.post('/auth/admin/login', data);
 export const studentRegister = (data) => api.post('/auth/student/register', data);
 export const studentLogin    = (data) => api.post('/auth/student/login', data);
 export const getMyProfile    = ()     => api.get(`/auth/${getUserType()}/me`);
 
-// ── OTP Auth (NEW) ────────────────────────────────────────
+// ── OTP Auth  ────────────────────────────────────────
 export const sendOTP   = (data) => api.post('/auth/otp/send', data);
 export const verifyOTP = (data) => api.post('/auth/otp/verify', data);
 
-// ── Scholarships (existing) ───────────────────────────────
+// ── Scholarships  ───────────────────────────────
 export const getScholarships     = (params)    => api.get('/scholarships', { params });
 export const getScholarshipById  = (id)        => api.get(`/scholarships/${id}`);
 export const createScholarship   = (data)      => api.post('/scholarships', data);
@@ -43,7 +43,7 @@ export const updateScholarship   = (id, data)  => api.patch(`/scholarships/${id}
 export const deleteScholarship   = (id)        => api.delete(`/scholarships/${id}`);
 export const getScholarshipStats = ()          => api.get('/scholarships/stats');
 
-// ── Applications (existing) ───────────────────────────────
+// ── Applications  ───────────────────────────────
 export const applyForScholarship = (scholarshipId) => api.post('/applications', { scholarshipId });
 export const getMyApplications   = (params)        => api.get('/applications/my', { params });
 export const getAllApplications  = (params)        => api.get('/applications', { params });
@@ -51,7 +51,7 @@ export const updateAppStatus     = (id, data)      => api.patch(`/applications/$
 export const withdrawApplication = (id)            => api.patch(`/applications/${id}/withdraw`);
 export const getApplicationStats = ()              => api.get('/applications/stats');
 
-// ── Document Upload (NEW) ─────────────────────────────────
+// ── Document Upload  ─────────────────────────────────
 // formData must be a FormData object with files appended under field "files"
 export const uploadDocuments = (applicationId, formData) =>
   api.post(`/upload/documents/${applicationId}`, formData, {
@@ -66,7 +66,7 @@ export const updateDocStatus = (applicationId, documentId, data) =>
 // Admin: get single application with documents
 export const getAppWithDocs = (id) => api.get(`/upload/application/${id}`);
 
-// ── Notifications (existing) ──────────────────────────────
+// ── Notifications  ──────────────────────────────
 export const getNotifications   = ()    => api.get('/notifications');
 export const getUnreadCount     = ()    => api.get('/notifications/unread-count');
 export const markAsRead         = (id)  => api.patch(`/notifications/${id}/read`);

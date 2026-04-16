@@ -3,16 +3,11 @@ const Scholarship = require('../models/Scholarship.model');
 const Notification = require('../models/Notification.model');
 const Admin = require('../models/Admin.model');
 
-// Helper: create a notification
+// create a notification
 const createNotification = async ({ userId, userType, message, type, relatedApplication }) => {
   await Notification.create({ userId, userType, message, type, relatedApplication });
 };
 
-// ─────────────────────────────────────────────────────────
-// @desc    Student applies for a scholarship
-// @route   POST /api/applications
-// @access  Student only
-// ─────────────────────────────────────────────────────────
 exports.applyForScholarship = async (req, res) => {
   try {
     const { scholarshipId } = req.body;
@@ -80,11 +75,7 @@ exports.applyForScholarship = async (req, res) => {
   }
 };
 
-// ─────────────────────────────────────────────────────────
-// @desc    Student views their own applications
-// @route   GET /api/applications/my
-// @access  Student only
-// ─────────────────────────────────────────────────────────
+
 exports.getMyApplications = async (req, res) => {
   try {
     const filter = { student: req.user._id };
@@ -100,11 +91,7 @@ exports.getMyApplications = async (req, res) => {
   }
 };
 
-// ─────────────────────────────────────────────────────────
-// @desc    Admin views all applications from their institution
-// @route   GET /api/applications
-// @access  Admin only
-// ─────────────────────────────────────────────────────────
+
 exports.getAllApplications = async (req, res) => {
   try {
     const filter = { institution: req.user.institutionName };
@@ -122,11 +109,7 @@ exports.getAllApplications = async (req, res) => {
   }
 };
 
-// ─────────────────────────────────────────────────────────
-// @desc    Admin updates application status (approve/reject)
-// @route   PATCH /api/applications/:id
-// @access  Admin only
-// ─────────────────────────────────────────────────────────
+
 exports.updateApplicationStatus = async (req, res) => {
   try {
     const { status, adminRemark } = req.body;
@@ -182,11 +165,7 @@ exports.updateApplicationStatus = async (req, res) => {
   }
 };
 
-// ─────────────────────────────────────────────────────────
-// @desc    Student withdraws a pending application
-// @route   PATCH /api/applications/:id/withdraw
-// @access  Student only
-// ─────────────────────────────────────────────────────────
+
 exports.withdrawApplication = async (req, res) => {
   try {
     const application = await Application.findById(req.params.id);
@@ -210,11 +189,6 @@ exports.withdrawApplication = async (req, res) => {
   }
 };
 
-// ─────────────────────────────────────────────────────────
-// @desc    Admin gets application stats for dashboard
-// @route   GET /api/applications/stats
-// @access  Admin only
-// ─────────────────────────────────────────────────────────
 exports.getApplicationStats = async (req, res) => {
   try {
     const institution = req.user.institutionName;

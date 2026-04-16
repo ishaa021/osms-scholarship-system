@@ -5,19 +5,15 @@ const Student = require('../models/Student.model');
 const Admin = require('../models/Admin.model');
 const { sendOTPEmail } = require('../config/mailer');
 
-// Helper: generate JWT token
+// generate JWT token
 const generateToken = (id, userType) =>
   jwt.sign({ id, userType }, process.env.JWT_SECRET, { expiresIn: '7d' });
 
-// Helper: generate a 6-digit random OTP
+//  generate a 6-digit random OTP
 const generateOTP = () =>
   Math.floor(100000 + Math.random() * 900000).toString();
 
-// ─────────────────────────────────────────────────────────
-// @desc    Send OTP to email
-// @route   POST /api/auth/otp/send
-// @access  Public
-// ─────────────────────────────────────────────────────────
+
 exports.sendOTP = async (req, res) => {
   try {
     const { email, userType } = req.body;
@@ -63,11 +59,7 @@ exports.sendOTP = async (req, res) => {
   }
 };
 
-// ─────────────────────────────────────────────────────────
-// @desc    Verify OTP and login user
-// @route   POST /api/auth/otp/verify
-// @access  Public
-// ─────────────────────────────────────────────────────────
+
 exports.verifyOTP = async (req, res) => {
   try {
     const { email, otp, userType } = req.body;

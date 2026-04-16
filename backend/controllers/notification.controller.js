@@ -1,10 +1,5 @@
 const Notification = require('../models/Notification.model');
 
-// ─────────────────────────────────────────────────────────
-// @desc    Get all notifications for logged-in user
-// @route   GET /api/notifications
-// @access  Student + Admin
-// ─────────────────────────────────────────────────────────
 exports.getMyNotifications = async (req, res) => {
   try {
     const notifications = await Notification.find({ userId: req.user._id })
@@ -21,11 +16,7 @@ exports.getMyNotifications = async (req, res) => {
   }
 };
 
-// ─────────────────────────────────────────────────────────
-// @desc    Get unread notification count (for bell icon)
-// @route   GET /api/notifications/unread-count
-// @access  Student + Admin
-// ─────────────────────────────────────────────────────────
+
 exports.getUnreadCount = async (req, res) => {
   try {
     const count = await Notification.countDocuments({
@@ -38,11 +29,6 @@ exports.getUnreadCount = async (req, res) => {
   }
 };
 
-// ─────────────────────────────────────────────────────────
-// @desc    Mark a single notification as read
-// @route   PATCH /api/notifications/:id/read
-// @access  Student + Admin
-// ─────────────────────────────────────────────────────────
 exports.markAsRead = async (req, res) => {
   try {
     const notification = await Notification.findById(req.params.id);
@@ -65,11 +51,7 @@ exports.markAsRead = async (req, res) => {
   }
 };
 
-// ─────────────────────────────────────────────────────────
-// @desc    Mark ALL notifications as read
-// @route   PATCH /api/notifications/read-all
-// @access  Student + Admin
-// ─────────────────────────────────────────────────────────
+
 exports.markAllAsRead = async (req, res) => {
   try {
     await Notification.updateMany(
@@ -83,11 +65,7 @@ exports.markAllAsRead = async (req, res) => {
   }
 };
 
-// ─────────────────────────────────────────────────────────
-// @desc    Delete a notification
-// @route   DELETE /api/notifications/:id
-// @access  Student + Admin
-// ─────────────────────────────────────────────────────────
+
 exports.deleteNotification = async (req, res) => {
   try {
     const notification = await Notification.findById(req.params.id);

@@ -72,11 +72,7 @@ exports.uploadDocuments = async (req, res) => {
   }
 };
 
-// ─────────────────────────────────────────────────────────
-// @desc    Admin updates status of a single document
-// @route   PATCH /api/upload/documents/:applicationId/:documentId
-// @access  Admin only
-// ─────────────────────────────────────────────────────────
+
 exports.updateDocumentStatus = async (req, res) => {
   try {
   
@@ -118,11 +114,7 @@ exports.updateDocumentStatus = async (req, res) => {
   }
 };
 
-// ─────────────────────────────────────────────────────────
-// @desc    Get single application with documents (for admin verify page)
-// @route   GET /api/upload/application/:id
-// @access  Admin only
-// ─────────────────────────────────────────────────────────
+
 exports.getApplicationWithDocs = async (req, res) => {
   try {
     const application = await Application.findById(req.params.id)
